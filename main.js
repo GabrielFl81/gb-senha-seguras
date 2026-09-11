@@ -1,12 +1,40 @@
 const numeroSenha = document.querySelector('.parametro-senha__texto');
-
-numeroSenha.textContent = 0;
+let tamanhoSenha = 8;
+numeroSenha.textContent = tamanhoSenha;
 
 const botoes = document.querySelectorAll('.parametro-senha__botao');
 
 botoes[0].onclick = diminuiTamanho;
+botoes[1].onclick = aumentaTamanho;
 
 function diminuiTamanho(){
-    
+    if(tamanhoSenha > 4){
+        tamanhoSenha--;
+    }
+    numeroSenha.textContent = tamanhoSenha;
+    geraSenha();
 }
-console.log(botoes);
+
+function aumentaTamanho(){
+    if(tamanhoSenha < 20){
+        tamanhoSenha++;
+    }
+    numeroSenha.textContent = tamanhoSenha;
+    geraSenha();
+}
+
+const campoSenha = document.querySelector('#campo-senha');
+
+const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+geraSenha();
+
+function geraSenha(){
+
+    for(let i = 0; i < tamanhoSenha;i++){
+        let numeroAleatorio = Math.random()*letrasMaiusculas.length;
+        numeroAleatorio = Math.floor(numeroAleatorio);
+        console.log(letrasMaiusculas[numeroAleatorio]);
+    };
+}
+
+campoSenha.value = letrasMaiusculas;
