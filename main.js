@@ -57,16 +57,20 @@ function geraSenha(){
         senha = senha + alfabeto[numeroAleatorio];
     };
     campoSenha.value = senha;
-    classificaSenha();
+    classificaSenha(alfabeto.length);
 }
 
-function classificaSenha(){
+function classificaSenha(tamanhoAlfabeto){
+    let entropia = tamanhoSenha * Math.log2(tamanhoAlfabeto);
+    console.log(entropia);
     forcaSenha.classList.remove('fraca', 'media', 'forte');
-    if(tamanhoSenha > 13){
+    if(entropia > 55){
         forcaSenha.classList.add('forte');
-    } else if(tamanhoSenha > 6){
+    } else if(entropia > 38 && tamanhoSenha < 54){
         forcaSenha.classList.add('media');
-    } else {
+    } else if(entropia <= 38){
         forcaSenha.classList.add('fraca');
     }
+    const valorEntropia = document.querySelector('.entropia');
+    valorEntropia.textContent = ("Tempo para quebrar a senha ") + 2**Math.floor(entropia)/(100e6)*60*60*24 + (" dias");
 }
