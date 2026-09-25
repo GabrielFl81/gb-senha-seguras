@@ -72,5 +72,5 @@ function classificaSenha(tamanhoAlfabeto){
         forcaSenha.classList.add('fraca');
     }
     const valorEntropia = document.querySelector('.entropia');
-    valorEntropia.textContent = ("Tempo para quebrar a senha ") + 2**Math.floor(entropia)/(100e6)*60*60*24 + (" dias");
+    valorEntropia.textContent = ("Tempo para quebrar a senha ") + Math.floor(2**Math.floor(entropia)/(100e6)*60*60*24) + (" dias");
 }
